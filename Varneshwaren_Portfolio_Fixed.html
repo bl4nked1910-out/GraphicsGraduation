@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Varneshwaren Vikneswaran | Character Designer & 2DAnimator</title>
+
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & Space Grotesk -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+    <script>
+
+        tailwind.config = {
+
+            darkMode: 'class',
+
+            theme: {
+
+                extend: {
+
+                    fontFamily: {
+
+                        sans: ['Inter', 'sans-serif'],
+
+                        display: ['Space Grotesk', 'sans-serif'],
+
+                    },
+
+                    colors: {
+
+                        studio: {
+
+                            bg: '#0B0D12',
+
+                            surface: '#141821',
+
+                            card: '#1B202C',
+
+                            border: '#283042',
+
+                            accent: '#8B5CF6', // Vibrant Violet
+
+                            accentHover: '#7C3AED',
+
+                            secondary: '#06B6D4', // Cyan Glow
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+</head>
+
+<body class="bg-studio-bg text-slate-200 font-sans antialiased selection:bg-studio-accent selection:text-white min-h-screen flex flex-col">
+
+
+
+    <!-- ==================== NAVIGATION BAR ==================== -->
+
+    <header class="sticky top-0 z-40 bg-studio-bg/85 backdrop-blur-md border-b border-studio-border">
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Studio Brand / Logo -->
+
+                <button onclick="navigateTo('about')" class="flex items-center space-x-3 text-left group focus:outline-none">
+
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-studio-accent to-studio-secondary flex items-center justify-center text-white font-display font-bold text-xl shadow-lg shadow-studio-accent/20 group-hover:scale-105 transition-transform">
+
+                        VV
+
+                    </div>
+
+                    <div>
+
+                        <span class="block font-display font-bold text-lg text-white tracking-tight">Varneshwaren Vikneswaran</span>
+
+                        <span class="block text-xs text-slate-400 font-medium">Character Art & Animation Portfolio</span>
+
+                    </div>
+
+                </button>
+
+
+
+                <!-- Desktop Navigation Links (3 Pages) -->
+
+                <nav class="hidden md:flex items-center space-x-2 bg-studio-surface p-1.5 rounded-2xl border border-studio-border">
+
+                    <button id="nav-about" onclick="navigateTo('about')" class="nav-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-2 bg-studio-accent text-white shadow-md">
+
+                        <i data-lucide="user" class="w-4 h-4"></i>
+
+                        <span>About Me</span>
+
+                    </button>
+
+                    <button id="nav-gallery" onclick="navigateTo('gallery')" class="nav-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white hover:bg-studio-card">
+
+                        <i data-lucide="palette" class="w-4 h-4"></i>
+
+                        <span>Character Dev</span>
+
+                    </button>
+
+                    <button id="nav-animation" onclick="navigateTo('animation')" class="nav-btn px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white hover:bg-studio-card">
+
+                        <i data-lucide="film" class="w-4 h-4"></i>
+
+                        <span>Short Animation</span>
+
+                    </button>
+
+                </nav>
+
+
+
+                <!-- Mobile Menu Button -->
+
+                <div class="md:hidden">
+
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-studio-surface border border-studio-border text-slate-300 hover:text-white focus:outline-none">
+
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Mobile Dropdown Navigation -->
+
+        <div id="mobile-menu" class="hidden md:hidden bg-studio-surface border-b border-studio-border px-4 pt-2 pb-4 space-y-2">
+
+            <button id="m-nav-about" onclick="navigateTo('about'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3 bg-studio-accent text-white">
+
+                <i data-lucide="user" class="w-4 h-4"></i> About Me
+
+            </button>
+
+            <button id="m-nav-gallery" onclick="navigateTo('gallery'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3 text-slate-300 hover:bg-studio-card">
+
+                <i data-lucide="palette" class="w-4 h-4"></i> Character Development
+
+            </button>
+
+            <button id="m-nav-animation" onclick="navigateTo('animation'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3 text-slate-300 hover:bg-studio-card">
+
+                <i data-lucide="film" class="w-4 h-4"></i> Short Animation
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================== MAIN CONTENT AREA ==================== -->
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+
+
+        <!-- ========================================================= -->
+
+        <!-- PAGE 1: ABOUT ME                                          -->
+
+        <!-- ========================================================= -->
+
+        <section id="page-about" class="page-section space-y-12">
+
+            <!-- Hero Intro Card -->
+
+            <div class="bg-studio-surface border border-studio-border rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+
+                <!-- Decorative Ambient Glow -->
+
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-studio-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-studio-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
+
+
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+                    <!-- Artist Avatar / Portrait -->
+
+                    <div class="lg:col-span-4 flex justify-center">
+
+                        <div class="relative group">
+
+                            <div class="absolute -inset-1 bg-gradient-to-tr from-studio-accent to-studio-secondary rounded-3xl blur opacity-40 group-hover:opacity-75 transition duration-500"></div>
+
+                            <img
+
+                                src="https://drive.google.com/thumbnail?id=1Jztrs6AyfFDKUHiXbWb-mlFG2y-rqp2d&sz=w1000"
+
+                                onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Jztrs6AyfFDKUHiXbWb-mlFG2y-rqp2d';"
+
+                                alt="Varnesh Vikneswaran Portrait"
+
+                                class="relative w-64 sm:w-72 lg:w-full h-auto object-cover rounded-2xl border border-studio-border shadow-xl"
+
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Bio & Artistic Statement -->
+
+                    <div class="lg:col-span-8 space-y-6">
+
+                        <h1 class="font-display text-3xl sm:text-5xl font-bold text-white leading-tight">
+
+                            Bringing expressive characters to life through <span class="text-transparent bg-clip-text bg-gradient-to-r from-studio-accent to-studio-secondary">shape, fantasy & motion.</span>
+
+                        </h1>
+
+                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+
+                            Hi! I’m Varnesh, and I’m a character designer and 2D animator. My job is to take ideas from my sketchbook and bring them to life as moving cartoons! I love creating cool-looking characters with big personalities and telling stories that make you feel like you're right there in the adventure with them.
+
+                        </p>
+
+                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+
+                            Today, I’m super excited to introduce my newest original character created especially for my portfolio and take you behind the scenes to show how they came together!
+
+                        </p>
+
+
+
+                        <!-- Quick CTA Buttons -->
+
+                        <div class="pt-2 flex flex-wrap gap-4">
+
+                            <button onclick="navigateTo('gallery')" class="px-6 py-3 rounded-xl bg-studio-accent hover:bg-studio-accentHover text-white font-medium text-sm transition-all shadow-lg shadow-studio-accent/25 flex items-center gap-2">
+
+                                <span>Explore Character Sheets</span>
+
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+
+                            </button>
+
+                            <button onclick="navigateTo('animation')" class="px-6 py-3 rounded-xl bg-studio-card hover:bg-studio-border text-white border border-studio-border font-medium text-sm transition-all flex items-center gap-2">
+
+                                <i data-lucide="play-circle" class="w-4 h-4 text-studio-secondary"></i>
+
+                                <span>Watch Short Film</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+        </section>
+
+
+
+    <!-- ========================================================= -->
+
+<!-- PAGE 2: CHARACTER DEVELOPMENT GALLERY                     -->
+
+<!-- ========================================================= -->
+
+<section id="page-gallery" class="page-section hidden space-y-8">
+
+    <!-- Header & Filter Tabs -->
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 bg-studio-surface border border-studio-border rounded-3xl p-6 sm:p-8">
+
+        <div class="space-y-2 max-w-2xl">
+
+            <span class="text-xs font-semibold uppercase tracking-wider text-studio-accent">Visual Development</span>
+
+            <h1 class="font-display text-3xl sm:text-4xl font-bold text-white">Character Development Gallery</h1>
+
+        </div>
+
+
+
+        <!-- Interactive Category Filters -->
+
+        <div class="flex flex-wrap gap-2">
+
+            <button onclick="filterGallery('all', this)" class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-studio-accent text-white transition-all">All Sheets</button>
+            <button onclick="filterGallery('turnaround', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-studio-card text-slate-300 hover:text-white border border-studio-border transition-all">Turnaround</button>
+
+            <button onclick="filterGallery('expressions', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-studio-card text-slate-300 hover:text-white border border-studio-border transition-all">Expressions</button>
+
+            <button onclick="filterGallery('concept', this)" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-studio-card text-slate-300 hover:text-white border border-studio-border transition-all">Concept Art</button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Responsive Character Grid -->
+
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+
+        <!-- Card 1: Turnaround -->
+
+        <article data-category="turnaround" onclick="openLightbox(this)" class="gallery-item group cursor-pointer bg-studio-surface border border-studio-border hover:border-studio-accent rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col">
+
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-studio-card flex items-center justify-center p-2">
+
+                <img
+
+                    src="https://drive.google.com/thumbnail?id=1Y7vsl_24P5rjeSmw_CeXyvMYETKscoAh&sz=w1000"
+
+                    onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Y7vsl_24P5rjeSmw_CeXyvMYETKscoAh';"
+
+                    alt="Lyra Vex Turnaround"
+
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+
+                >
+
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-studio-bg/80 backdrop-blur-md border border-studio-border text-[11px] font-semibold text-studio-secondary">Turnaround</span>
+
+                <div class="absolute bottom-3 right-3 p-2 rounded-xl bg-studio-accent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+
+                </div>
+
+            </div>
+
+            <div class="p-5 space-y-1.5">
+
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-studio-accent transition-colors">Var2017</h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2">Front, 3/4, side, and back orthographic line-up with modular backpack prop breakdown.</p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Card 2: Concept Art -->
+
+        <article data-category="concept" onclick="openLightbox(this)" class="gallery-item group cursor-pointer bg-studio-surface border border-studio-border hover:border-studio-accent rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col">
+
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-studio-card flex items-center justify-center p-2">
+
+                <img
+
+                    src="https://drive.google.com/thumbnail?id=1L4hKR6P6EW1AtBkoWhuA6Josk7A55B9w&sz=w1000"
+
+                    onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1L4hKR6P6EW1AtBkoWhuA6Josk7A55B9w';"
+
+                    alt="Moon scene"
+
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+
+                >
+
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-studio-bg/80 backdrop-blur-md border border-studio-border text-[11px] font-semibold text-emerald-400">Concept Art</span>
+
+                <div class="absolute bottom-3 right-3 p-2 rounded-xl bg-studio-accent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+
+                </div>
+
+            </div>
+
+            <div class="p-5 space-y-1.5">
+
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-studio-accent transition-colors">Elder Moss — Forest Automaton</h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2">Exploration of mossy stone textures, bioluminescent runes, and heavy top-heavy silhouette language.</p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Card 3: Turnaround -->
+
+        <article data-category="turnaround" onclick="openLightbox(this)" class="gallery-item group cursor-pointer bg-studio-surface border border-studio-border hover:border-studio-accent rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col">
+
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-studio-card flex items-center justify-center p-2">
+
+                <img
+
+                    src="https://drive.google.com/thumbnail?id=1fQjDk0u7esOVQJfngrkHZMhdlyD5caUZ&sz=w1000"
+
+                    onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fQjDk0u7esOVQJfngrkHZMhdlyD5caUZ';"
+
+                    alt="PlanetZorr"
+
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+
+                >
+
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-studio-bg/80 backdrop-blur-md border border-studio-border text-[11px] font-semibold text-studio-secondary">Turnaround</span>
+
+                <div class="absolute bottom-3 right-3 p-2 rounded-xl bg-studio-accent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+
+                </div>
+
+            </div>
+
+            <div class="p-5 space-y-1.5">
+
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-studio-accent transition-colors">Kitsune Scout — Cloak & Tail Physics</h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2">Secondary motion guide illustrating cloak fold hierarchy and multi-tail follow-through arcs.</p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Card 4: Expressions -->
+
+        <article data-category="expressions" onclick="openLightbox(this)" class="gallery-item group cursor-pointer bg-studio-surface border border-studio-border hover:border-studio-accent rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col">
+
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-studio-card flex items-center justify-center p-2">
+
+                <img
+
+                    src="https://drive.google.com/thumbnail?id=1r--XuW6cTuEMf7zEiSu3caA0ujzd0wT5&sz=w1000"
+
+                    onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1r--XuW6cTuEMf7zEiSu3caA0ujzd0wT5';"
+
+                    alt="Var2017 variety of colours"
+
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+
+                >
+
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-studio-bg/80 backdrop-blur-md border border-studio-border text-[11px] font-semibold text-amber-400">Expressions</span>
+
+                <div class="absolute bottom-3 right-3 p-2 rounded-xl bg-studio-accent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+
+                </div>
+
+            </div>
+
+            <div class="p-5 space-y-1.5">
+
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-studio-accent transition-colors">Var2017 — Color Variations</h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2">Palette exploration comparing green, red, blue, and purple colorways.</p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- Card 5: Concept Art -->
+
+        <article data-category="concept" onclick="openLightbox(this)" class="gallery-item group cursor-pointer bg-studio-surface border border-studio-border hover:border-studio-accent rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 shadow-lg flex flex-col">
+
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-studio-card flex items-center justify-center p-2">
+
+                <img
+
+                    src="https://drive.google.com/thumbnail?id=1-p9NqsXPbbuOqeJLrcIhKniRLJQfFOHg&sz=w1000"
+
+                    onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-p9NqsXPbbuOqeJLrcIhKniRLJQfFOHg';"
+
+                    alt="Evil planet"
+
+                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+
+                >
+
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-studio-bg/80 backdrop-blur-md border border-studio-border text-[11px] font-semibold text-emerald-400">Concept Art</span>
+
+                <div class="absolute bottom-3 right-3 p-2 rounded-xl bg-studio-accent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+
+                </div>
+
+            </div>
+
+            <div class="p-5 space-y-1.5">
+
+                <h3 class="font-display font-bold text-lg text-white group-hover:text-studio-accent transition-colors">Vespera — Neon Alchemist Lighting Keys</h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2">Rim-lighting and subsurface scattering tests for nighttime urban sequence integration.</p>
+
+            </div>
+
+        </article>
+
+
+
+    </div>
+
+</section>
+
+
+
+<!-- Enlarged Image Lightbox Modal -->
+
+<div id="gallery-lightbox" onclick="closeGalleryLightbox()" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+
+    <div onclick="event.stopPropagation()" class="relative max-w-5xl w-full bg-studio-surface border border-studio-border rounded-3xl overflow-hidden shadow-2xl">
+
+        <button onclick="closeGalleryLightbox()" class="absolute top-4 right-4 z-10 px-3.5 py-2 rounded-xl bg-black/75 hover:bg-studio-accent text-white text-xs font-semibold border border-white/10 transition cursor-pointer">
+
+            Close ✕
+
+        </button>
+
+
+
+        <div class="bg-black flex items-center justify-center p-3 sm:p-5 max-h-[78vh] overflow-hidden">
+
+            <img id="gallery-lightbox-img" src="" alt="" class="max-w-full max-h-[72vh] object-contain rounded-xl">
+
+        </div>
+
+
+
+        <div class="p-5 sm:p-6 border-t border-studio-border">
+
+            <span id="gallery-lightbox-tag" class="text-[11px] font-semibold uppercase tracking-wider text-studio-secondary"></span>
+
+            <h3 id="gallery-lightbox-title" class="font-display text-xl font-bold text-white mt-0.5"></h3>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <p id="gallery-lightbox-desc" class="text-xs sm:text-sm text-slate-400 mt-1"></p>
+                <div class="flex gap-2 shrink-0">
+                    <button onclick="stepGalleryLightbox(-1)" class="p-2 rounded-xl bg-studio-card hover:bg-studio-border text-white" title="Previous artwork"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                    <button onclick="stepGalleryLightbox(1)" class="p-2 rounded-xl bg-studio-card hover:bg-studio-border text-white" title="Next artwork"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+       <!-- ========================================================= -->
+
+        <!-- PAGE 3: SHORT VIDEO ANIMATION SHOWCASE                  -->
+
+        <!-- ========================================================= -->
+
+        <section id="page-animation" class="page-section hidden space-y-8">
+
+            <!-- Title Banner -->
+
+            <div class="bg-studio-surface border border-studio-border rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+
+                <div>
+
+                    <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-studio-secondary mb-1">
+
+                        <i data-lucide="clapperboard" class="w-4 h-4"></i>
+
+                        Featured Animated Portfolio
+
+                    </div>
+
+                    <h1 class="font-display text-3xl sm:text-4xl font-bold text-white">“Character Development” — Portfolio Reel</h1>
+
+                </div>
+
+                <div class="flex items-center gap-3 text-xs text-slate-400 bg-studio-card px-4 py-2.5 rounded-2xl border border-studio-border">
+
+                    <span>24 FPS</span>
+
+                    <span>•</span>
+
+                    <span>1080p HD</span>
+
+                    <span>•</span>
+
+                    <span>Original Score</span>
+
+                </div>
+
+            </div>
+
+
+
+                        <!-- Video Player -->
+            <div class="bg-studio-surface border border-studio-border rounded-3xl p-3 sm:p-5 shadow-2xl">
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-studio-border">
+                    <iframe class="absolute inset-0 w-full h-full" width="560" height="315"
+                        src="https://www.youtube.com/embed/dl9PNaWtpHE?si=QLMQ52z98QhIZd7a"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Production Credits Card -->
+
+            <div class="bg-studio-surface border border-studio-border rounded-3xl p-6 sm:p-8 space-y-4">
+
+                <h2 class="font-display text-xl font-bold text-white flex items-center gap-2">
+
+                    <i data-lucide="users" class="w-5 h-5 text-studio-secondary"></i>
+
+                    Production Credits
+
+                </h2>
+
+                <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+
+                    <div class="flex justify-between py-2 border-b border-studio-border/60">
+
+                        <dt class="text-slate-400">Direction & Character Design</dt>
+
+                        <dd class="font-medium text-white">Varnesh</dd>
+
+                    </div>
+
+                    <div class="flex justify-between py-2 border-b border-studio-border/60">
+
+                        <dt class="text-slate-400">Lead Animation</dt>
+
+                        <dd class="font-medium text-white">Varnesh</dd>
+
+                    </div>
+
+                    <div class="flex justify-between py-2 border-b border-studio-border/60">
+
+                        <dt class="text-slate-400">Background Paint</dt>
+
+                        <dd class="font-medium text-white">Varnesh</dd>
+
+                    </div>
+
+                    <div class="flex justify-between py-2 border-b border-studio-border/60">
+
+                        <dt class="text-slate-400">Sound Design & Score</dt>
+
+                        <dd class="font-medium text-white">Varnesh</dd>
+
+                    </div>
+
+                </dl>
+
+            </div>
+
+        </section>
+
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <footer class="border-t border-studio-border bg-studio-surface/50 mt-auto">
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+
+            <p>© 2026 Var2017 Studio. All character designs & animations protected.</p>
+
+            <div class="flex items-center gap-5">
+
+                <button onclick="navigateTo('about')" class="hover:text-white transition-colors">About</button>
+
+                <button onclick="navigateTo('gallery')" class="hover:text-white transition-colors">Character Dev</button>
+
+                <button onclick="navigateTo('animation')" class="hover:text-white transition-colors">Animation</button>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==================== MINIMAL INTERACTIVE SCRIPT ==================== -->
+
+    <script>
+
+        // Initialize Lucide Icons
+
+        lucide.createIcons();
+
+
+
+        // Multi-Page Navigation Controller
+
+        function navigateTo(pageId) {
+
+            // Hide all page sections
+
+            document.querySelectorAll('.page-section').forEach(section => {
+
+                section.classList.add('hidden');
+
+            });
+
+
+
+            // Show target page section
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+
+            if (targetPage) {
+
+                targetPage.classList.remove('hidden');
+
+            }
+
+
+
+            // Update Desktop Nav Active State
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+
+                btn.classList.remove('bg-studio-accent', 'text-white', 'shadow-md');
+
+                btn.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-studio-card');
+
+            });
+
+            const activeNav = document.getElementById(`nav-${pageId}`);
+
+            if (activeNav) {
+
+                activeNav.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-studio-card');
+
+                activeNav.classList.add('bg-studio-accent', 'text-white', 'shadow-md');
+
+            }
+
+
+
+            // Update Mobile Nav Active State
+
+            ['about', 'gallery', 'animation'].forEach(id => {
+
+                const mBtn = document.getElementById(`m-nav-${id}`);
+
+                if (mBtn) {
+
+                    if (id === pageId) {
+
+                        mBtn.className = "w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3 bg-studio-accent text-white";
+
+                    } else {
+
+                        mBtn.className = "w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center gap-3 text-slate-300 hover:bg-studio-card";
+
+                    }
+
+                }
+
+            });
+
+
+
+            // Scroll smoothly to top
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        }
+
+
+
+        // Mobile Menu Toggle
+
+        function toggleMobileMenu() {
+
+            const menu = document.getElementById('mobile-menu');
+
+            menu.classList.toggle('hidden');
+
+        }
+
+
+
+        // Gallery Category Filter
+
+        function filterGallery(category, clickedBtn) {
+
+            // Update filter button styles
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+
+                btn.classList.remove('bg-studio-accent', 'text-white');
+
+                btn.classList.add('bg-studio-card', 'text-slate-300', 'border', 'border-studio-border');
+
+            });
+
+            clickedBtn.classList.remove('bg-studio-card', 'text-slate-300', 'border', 'border-studio-border');
+
+            clickedBtn.classList.add('bg-studio-accent', 'text-white');
+
+
+
+            // Show/Hide matching cards
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+
+                if (category === 'all' || item.dataset.category === category) {
+
+                    item.classList.remove('hidden');
+
+                } else {
+
+                    item.classList.add('hidden');
+
+                }
+
+            });
+
+        }
+
+
+
+        // Single lightbox system driven by the actual gallery cards
+        let galleryLightboxIndex = 0;
+        let visibleGalleryCards = [];
+
+        function openLightbox(card) {
+            visibleGalleryCards = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+            galleryLightboxIndex = visibleGalleryCards.indexOf(card);
+            showGalleryLightboxCard(card);
+            document.getElementById('gallery-lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showGalleryLightboxCard(card) {
+            const img = card.querySelector('img');
+            const tag = card.querySelector('span')?.textContent || card.dataset.category || '';
+            const title = card.querySelector('h3')?.textContent || '';
+            const desc = card.querySelector('p')?.textContent || '';
+            const modalImg = document.getElementById('gallery-lightbox-img');
+            modalImg.src = img.currentSrc || img.src;
+            modalImg.alt = title;
+            document.getElementById('gallery-lightbox-tag').textContent = tag;
+            document.getElementById('gallery-lightbox-title').textContent = title;
+            document.getElementById('gallery-lightbox-desc').textContent = desc;
+        }
+
+        function stepGalleryLightbox(direction) {
+            if (!visibleGalleryCards.length) return;
+            galleryLightboxIndex = (galleryLightboxIndex + direction + visibleGalleryCards.length) % visibleGalleryCards.length;
+            showGalleryLightboxCard(visibleGalleryCards[galleryLightboxIndex]);
+        }
+
+        function closeGalleryLightbox() {
+            document.getElementById('gallery-lightbox').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('gallery-lightbox');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeGalleryLightbox();
+                if (e.key === 'ArrowRight') stepGalleryLightbox(1);
+                if (e.key === 'ArrowLeft') stepGalleryLightbox(-1);
+            }
+        });
+
+        </script>
+
+</body>
+
+</html>
